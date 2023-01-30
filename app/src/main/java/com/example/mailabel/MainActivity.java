@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment missatge;
     public  email correu;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,20 +38,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public  void hola(Fragment f,email e){
-        transaction=getSupportFragmentManager().beginTransaction();
 
+    public  void hola(Fragment f,email e){
+
+        transaction=getSupportFragmentManager().beginTransaction();
+        missatge = f;
         correu=e;
-        transaction.replace(R.id.correusFL,f);
+        transaction.replace(R.id.messageView,f);
         transaction.commit();
+
+
 
 
     }
 
     public void fragmentLlista(){
+
         transaction2=getSupportFragmentManager().beginTransaction();
         transaction2.replace(R.id.correusFL,correus);
         transaction2.commit();
+        transaction2.hide(missatge);
+
     }
 
 
