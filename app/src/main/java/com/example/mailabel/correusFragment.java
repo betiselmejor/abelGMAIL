@@ -1,5 +1,6 @@
 package com.example.mailabel;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -49,7 +50,7 @@ public class correusFragment extends Fragment {
     public void ompleLlista(){
 
         correus = new ArrayList<>();
-        correus.add(new email("arnauov@gmail.com"));
+        correus.add(new email("arnauov@gmail.com","holaquetalpremoquevienequeva"));
         correus.add(new email("arnauof1@gmail.com"));
         correus.add(new email("hiperpikachu777@gmail.com"));
         correus.add(new email("pigueta.sf@gmail.com"));
@@ -74,10 +75,10 @@ public class correusFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(v.getContext(),correus.get(RV.getChildAdapterPosition(v)).getGmail(),Toast.LENGTH_SHORT).show();
+                Fragment missatge = new MissatgeFragment();
 
-                Intent change = new Intent(getActivity(),Detall.class);
-                change.putExtra("correu",correus.get(RV.getChildAdapterPosition(v)) );
-                startActivity(change);
+                ((MainActivity)getActivity()).hola(missatge,correus.get(RV.getChildAdapterPosition(v)));
+
             }
         });
 

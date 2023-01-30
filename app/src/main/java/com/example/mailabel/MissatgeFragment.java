@@ -9,6 +9,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mailabel.persona.email;
@@ -17,13 +18,14 @@ import com.example.mailabel.persona.email;
 public class MissatgeFragment extends Fragment {
 
     TextView missatge;
-    email correu;
+    email corre;
     View vista;
+    Button listbtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        corre = ((MainActivity)getActivity()).correu;
     }
 
     @Override
@@ -31,13 +33,16 @@ public class MissatgeFragment extends Fragment {
                              Bundle savedInstanceState) {
         vista =inflater.inflate(R.layout.fragment_missatge, container, false);
 
-        missatge = (TextView) vista.findViewById(R.id.msgTextTV);
+        missatge = (TextView) vista.findViewById(R.id.msgContent);
+        listbtn = (Button) vista.findViewById(R.id.button);
 
-
-        Intent i = getActivity().getIntent();
-        correu = (email) i.getSerializableExtra("correu");
-
-        String a = correu.getMissatge();
+        listbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).fragmentLlista();
+            }
+        });
+        String a = corre.getMissatge();
         missatge.setText(a);
         missatge.setMovementMethod(new ScrollingMovementMethod());
 
@@ -45,4 +50,6 @@ public class MissatgeFragment extends Fragment {
 
         return vista;
     }
+
+
 }

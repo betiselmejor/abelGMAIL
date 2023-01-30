@@ -61,6 +61,11 @@ public class email implements Serializable {
         this.gmail = gmail;
     }
 
+    public email(String gmail, String missatge) {
+        this.gmail = gmail;
+        this.missatge = missatge;
+    }
+
     public email() {
     }
 
